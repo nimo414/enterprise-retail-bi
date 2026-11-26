@@ -1,15 +1,19 @@
 # Enterprise Retail BI & Data Warehouse
 
+An end-to-end Business Intelligence project built with SQL Server, SSIS, Data Warehousing, Power BI, and DAX.
+
 ## Project Overview
 
-A complete Business Intelligence project covering data warehousing,
-ETL development, data modeling, DAX analytics, and Power BI dashboarding.
+This project simulates a real-world retail BI environment, starting from source data and continuing through staging, ETL, dimensional modeling, analytics, and executive reporting.
+
+The goal is to transform raw retail data into a reliable analytical model and provide business insights through an interactive Power BI dashboard.
 
 ## Architecture
 
+```text
 Source Data
     ↓
-Staging (SQL Server)
+Staging Layer
     ↓
 SSIS ETL
     ↓
@@ -17,66 +21,155 @@ Data Warehouse
     ↓
 Star Schema
     ↓
-Power BI
+Power BI Data Model
+    ↓
+DAX Analytics
     ↓
 Executive Dashboard
+```
 
 ## Data Warehouse
 
-### Dimensions
+The warehouse follows a Star Schema architecture.
+
+### Dimension Tables
+
 - DimCustomer
 - DimProduct
 - DimDate
 
-### Facts
+### Fact Tables
+
 - FactSales
 - FactReturns
 
 ## ETL
 
-ETL was developed using SQL Server Integration Services (SSIS).
+ETL processes were implemented using SQL Server Integration Services (SSIS).
 
 Main package:
-- ETL_Master.dtsx
 
-## Data Model
+```text
+ETL_Master.dtsx
+```
 
-The Power BI model follows a Star Schema design.
+The ETL process loads and transforms data from the staging layer into the dimensional warehouse.
 
-## Analytics
+## Power BI Data Model
 
-The project includes analysis of:
+The Power BI model uses a Star Schema with:
 
-- Revenue
-- Profit
+- Customer dimension
+- Product dimension
+- Date dimension
+- Sales fact
+- Returns fact
+
+Relationships were configured using one-to-many relationships from dimensions to fact tables.
+
+## DAX Analytics
+
+Key business measures include:
+
+- Total Revenue
+- Total Profit
+- Total Orders
 - Profit Margin
-- Orders
 - Average Order Value
-- Returns
+- Total Returns
+- Total Refund
 - Return Rate
-- Sales Channels
-- Payment Methods
-- Discounts
-- Inventory
-- Overstock
-- Low Stock
+- Revenue per Customer
+- Orders per Customer
+- Total Stock
+- Stock Status
+- Overstock Analysis
 
-## Data Quality
+## Business Analysis
 
-The following validations were performed:
+The dashboard provides analysis across several business areas:
 
-- Referential Integrity
-- Missing Dimension Keys
-- Duplicate Transaction IDs
-- Fact and Dimension Row Counts
-- ETL Load Validation
+### Sales Performance
 
-## Tools
+- Revenue and profit
+- Monthly sales trends
+- Product performance
+- Sales channels
+- Payment methods
+- Discount analysis
+
+### Customer Analysis
+
+- Customer distribution
+- Revenue by country
+- Profitability by country
+- Revenue per customer
+- Orders per customer
+
+### Returns Analysis
+
+- Return volume
+- Refund amount
+- Return rate
+- Products with high return rates
+
+### Inventory Analysis
+
+- Stock levels
+- Reorder points
+- Low-stock products
+- Overstocked products
+
+## Data Quality & Validation
+
+The following validation checks were performed:
+
+- Fact and dimension row-count validation
+- Referential integrity checks
+- Missing dimension key checks
+- Duplicate transaction checks
+- ETL execution validation
+- Power BI relationship validation
+
+## Technologies
 
 - SQL Server
 - T-SQL
-- SSIS
+- SQL Server Integration Services (SSIS)
+- Data Warehousing
+- Star Schema
 - Power BI
 - DAX
 - Power Query
-- Data Warehousing
+
+## Project Structure
+
+```text
+Enterprise-Retail-BI/
+│
+├── README.md
+│
+├── SQL/
+│
+├── SSIS/
+│   └── ETL_Master.dtsx
+│
+├── PowerBI/
+│   └── Enterprise_Retail_BI.pbix
+│
+└── Screenshots/
+```
+
+## Dashboard
+
+The Power BI dashboard contains three main analytical areas:
+
+- Executive Overview
+- Product & Inventory
+- Customer & Sales
+
+Screenshots of the dashboard are available in the `Screenshots` folder.
+
+## Key Outcome
+
+The project demonstrates an end-to-end BI workflow from raw data ingestion and ETL to dimensional modeling, analytical DAX measures, data validation, and interactive business reporting.
